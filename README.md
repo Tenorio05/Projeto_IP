@@ -6,4 +6,4 @@
  Pedro <br>
  Lucas <br>
  Theo <br>
- Thiago
+ Thiago Tenório
