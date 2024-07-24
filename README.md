@@ -1,7 +1,7 @@
 # Projeto_IP
  Projeto do jogo da cadeira de Introdução à Programação
 
-Grupo:
+# Grupo:
  Arthur
  Pedro
  Lucas
