@@ -15,8 +15,9 @@ direcao_personagem = pygame.math.Vector2()
 velocidade = 500
 
 # Background provisional
-bg = pygame.image.load('backgrounds/plains.png').convert()
+bg = pygame.image.load('backgrounds/background.jpg').convert()
 bgrect = bg.get_rect()
+bg = pygame.transform.scale(bg, (2560, 1440))
 
 # Arma
 tiro = pygame.image.load('personagens/mic.png').convert_alpha()
