@@ -44,8 +44,8 @@ while jogo:
 
     # movimento
     keys = pygame.key.get_pressed()
-    direcao_personagem.x = int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])
-    direcao_personagem.y = int(keys[pygame.K_DOWN]) - int(keys[pygame.K_UP])
+    direcao_personagem.x = int(keys[pygame.K_d]) - int(keys[pygame.K_a])
+    direcao_personagem.y = int(keys[pygame.K_s]) - int(keys[pygame.K_w])
     direcao_personagem = direcao_personagem.normalize() if direcao_personagem.length() > 0 else direcao_personagem
     movimento = direcao_personagem * velocidade * dt
     
@@ -85,6 +85,6 @@ while jogo:
     pygame.display.flip()
 
     # titulo
-    pygame.display.set_caption('nerissa ravencroft e ze vaqueiro')
+    pygame.display.set_caption('Vaqueiro Survivours')
 
 pygame.quit()
