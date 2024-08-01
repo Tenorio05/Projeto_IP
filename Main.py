@@ -1,90 +1,117 @@
-import pygame
+from settings import *
+from personagem import Player
+from sprites import *
+import math
+import random
+from random import randint , choice
+from groups import Allsprites
 
-pygame.init()
+class Game:
+    def __init__(self):
+        pygame.init()
+        self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+        pygame.display.set_caption("ze")
+        self.clock = pygame.time.Clock()
+        self.running = True
+        self.load_images()
 
-# Display
-tela = pygame.display.set_mode((1280, 720))
+        #groups
+        self.all_sprites = Allsprites()
+        self.collision_sprites = pygame.sprite.Group()
+        self.bullet_sprites = pygame.sprite.Group()
+        self.enemy_sprites = pygame.sprite.Group()
 
-# time
-tempo = pygame.time.Clock()
 
-# Char (whatever for now)
-personagem = pygame.image.load('personagens/bigze.png').convert_alpha()
-personagemrect = personagem.get_rect(center=(640, 360))  # Center of the screen
-direcao_personagem = pygame.math.Vector2()
-velocidade = 500
+        # timer shoot
+        self.can_shoot = True
+        self.shoot_time = 0
+        self.gun_cooldown = 100
 
-# Background provisional
-bg = pygame.image.load('backgrounds/background.jpg').convert()
-bgrect = bg.get_rect()
-bg = pygame.transform.scale(bg, (2560, 1440))
-
-# Arma
-tiro = pygame.image.load('personagens/mic.png').convert_alpha()
-tiros = []  # List to store bullets and their directions
-velocidade_tiro = 700
-
-# Shooting variables
-tempo_ultimo_tiro = pygame.time.get_ticks()  # Time when last shot was fired
-intervalo_tiro = 1000  # Interval in milliseconds between shots (1 second)
-
-# Initial background offset
-bg_offset_x = 0
-bg_offset_y = 0
-
-# Gameplay loop
-jogo = True
-while jogo:
-    dt = tempo.tick(60) / 1000  
+        #timer enemy
+        self.enemy_event = pygame.event.custom_type()
+        pygame.time.set_timer(self.enemy_event, 300)
+        self.spawn_positions = []
+        
+        
     
-    # fechar jogo
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            jogo = False
 
-    # movimento
-    keys = pygame.key.get_pressed()
-    direcao_personagem.x = int(keys[pygame.K_d]) - int(keys[pygame.K_a])
-    direcao_personagem.y = int(keys[pygame.K_s]) - int(keys[pygame.K_w])
-    direcao_personagem = direcao_personagem.normalize() if direcao_personagem.length() > 0 else direcao_personagem
-    movimento = direcao_personagem * velocidade * dt
-    
-    # mover o background 
-    bg_offset_x -= movimento.x
-    bg_offset_y -= movimento.y
+        # background
+        self.bg = pygame.image.load('backgrounds/grass.jpg').convert()
+        self.bg_width = self.bg.get_width()
+        self.bg_height = self.bg.get_height()
+        
+        self.tiles_x = math.ceil(WINDOW_WIDTH / self.bg_width) + 1
+        self.tiles_y = math.ceil(WINDOW_HEIGHT / self.bg_height) + 1
+        
+        self.player = Player((400,300), self.all_sprites, self.collision_sprites)
+        self.gun = Gun(self.player, self.all_sprites)
+        
+    def load_images(self):
+        self.bullet_surf = pygame.image.load('sprites/mic.png')
+        
 
-    # limitar o background
-    bg_offset_x = max(min(bg_offset_x, 0), tela.get_width() - bg.get_width())
-    bg_offset_y = max(min(bg_offset_y, 0), tela.get_height() - bg.get_height())
+    def enemy_spawner(self):
+        if random.choice([True, False]):
+            self.enemy_x = 0
+        else:
+            self.enemy_x = self.player.rect.x * 2
 
-    # atirar
-    now = pygame.time.get_ticks()
-    if now - tempo_ultimo_tiro > intervalo_tiro:
-        mouse = pygame.mouse.get_pos()
-        direcao_tiro = pygame.math.Vector2(mouse[0] - personagemrect.centerx, mouse[1] - personagemrect.centery)
-        direcao_tiro = direcao_tiro.normalize() if direcao_tiro.length() > 0 else direcao_tiro
-        tiros.append({'rect': tiro.get_rect(center=personagemrect.center), 'direction': direcao_tiro})  # Add bullet rect and direction to list
-        tempo_ultimo_tiro = now  # Update time of last shot
+        self.enemy_y = randint(0, WINDOW_HEIGHT) 
 
-    # update do tiro
-    for bullet in tiros:
-        bullet['rect'].center += bullet['direction'] * velocidade_tiro * dt
+        return [self.enemy_x, self.enemy_y]      
 
-    # desenhar bg
-    tela.fill([255, 255, 255])
-    tela.blit(bg, (bg_offset_x, bg_offset_y))
+    def input(self):
+        if pygame.mouse.get_pressed()[0] and self.can_shoot:
+            pos = self.gun.rect.center + self.gun.player_direction * 100
+            Bullet(self.bullet_surf, pos, self.gun.player_direction, (self.all_sprites, self.bullet_sprites))
+            self.can_shoot = False
+            self.shoot_time = pygame.time.get_ticks()
+            
+    def timer(self):
+        if not self.can_shoot:
+            current_time = pygame.time.get_ticks()
+            if current_time - self.shoot_time >= self.gun_cooldown:
+                self.can_shoot = True
 
-    # desenhar char
-    tela.blit(personagem, personagemrect)
+    def run(self):
+        while self.running:
+            #dts    
+            dt = self.clock.tick() / 1000
 
-    # desenhar balas
-    for bullet in tiros:
-        tela.blit(tiro, bullet['rect'])
+            
+            
+            
+            #event_loop
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+                if event.type == self.enemy_event:
+                    enemy_pos = self.enemy_spawner()
+                    Enemies(enemy_pos, (self.all_sprites,self.enemy_sprites), self.player, self.collision_sprites)
+                        
 
-    # Update display
-    pygame.display.flip()
+           
 
-    # titulo
-    pygame.display.set_caption('Vaqueiro Survivours')
 
-pygame.quit()
+
+            #update
+            self.timer()
+            self.input()
+            self.all_sprites.update(dt)
+        
+            #draw
+            offset_x = self.player.rect.centerx - WINDOW_WIDTH // 2
+            offset_y = self.player.rect.centery - WINDOW_HEIGHT // 2
+
+            for i in range(self.tiles_x):
+                for j in range(self.tiles_y):
+                    self.display_surface.blit(self.bg, (i * self.bg_width - offset_x % self.bg_width, j * self.bg_height - offset_y % self.bg_height))
+
+            self.all_sprites.draw(self.player.rect.center)
+            pygame.display.update()
+            
+        
+        pygame.quit()
+
+game = Game()
+game.run()
