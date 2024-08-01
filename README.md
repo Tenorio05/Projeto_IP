@@ -34,13 +34,13 @@ pygame==2.6.0
 
 ## Divisão do Trabalho no Grupo
 
-| Time                                                  | Tarefas                                                                                  |
-| ----------------------------------------------------- | --------------------------------------------------------------------------------------   |
-| [Arthur Henrique](https://github.com/Alpalone/)       | Desenvolveu...                                                                           |
-| [Lucas José](https://github.com//)                    | Desenvolveu a parte gráfica do jogo.                                                     |
-| [Pedro Cavalcanti](https://github.com/Cavuca5529/)    | Desenvolveu a mecânica dos coletáveis.                                                   |
-| [Theo William](https://github.com//)                  | Desenvolveu...                                                                           |
-| [Thiago Tenório](https://github.com/Tenorio05/)       | Desenvolveu o repertório e os slides de apresentação do projeto.                         |
+| Time                                                  | Tarefas                                                                                                                         |
+| ----------------------------------------------------- | --------------------------------------------------------------------------------------                                          |
+| [Arthur Henrique](https://github.com/Alpalone/)       | Responsável pelo código base, desenvolvendo o movimento do player, dos inimigos e do mapa.                                      |
+| [Lucas José](https://github.com//)                    | Desenvolveu a parte gráfica do jogo, criando os sprites do jogador, dos coletáveis e dos inimigos.                              |
+| [Pedro Cavalcanti](https://github.com/Cavuca5529/)    | Responsável pelo desenvolvimento das mecânicas dos coletáveis, das colisões e dos sprites.                                      |
+| [Theo William](https://github.com//)                  | Desenvolveu o background e foi responsável pela organização do código com o uso de POO.                                         |
+| [Thiago Tenório](https://github.com/Tenorio05/)       | Líder da equipe e responsável pelo repertório e pelos slides de apresentação do projeto.                                        |
 
 ## Conceitos Utilizados (que foram apresentados durante a disciplina e utilizados no projeto)
 
