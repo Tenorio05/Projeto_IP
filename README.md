@@ -26,25 +26,31 @@ Vaqueiro Survivors é um jogo no qual o Zé caminha pokas ideias pelos campos ve
 ## Capturas de Tela
 
 
-## Ferramentas, Bibliotecas, Frameworks Utilizados (e justificativas)
+## Bibliotecas Utilizadas
 
 ```bash
 pygame==2.6.0
 ```
+```bash
+pygame-ce
+```
 
 ## Divisão do Trabalho no Grupo
 
-| Time                                                  | Tarefas                                                                                                                         |
-| ----------------------------------------------------- | --------------------------------------------------------------------------------------                                          |
-| [Arthur Henrique](https://github.com/Alpalone/)       | Responsável pelo código base, desenvolvendo o movimento do player, dos inimigos e do mapa.                                      |
-| [Lucas José](https://github.com//)                    | Desenvolveu a parte gráfica do jogo, criando os sprites do jogador, dos coletáveis e dos inimigos.                              |
-| [Pedro Cavalcanti](https://github.com/Cavuca5529/)    | Responsável pelo desenvolvimento das mecânicas dos coletáveis, das colisões e dos sprites.                                      |
-| [Theo William](https://github.com//)                  | Desenvolveu o background e foi responsável pela organização do código com o uso de POO.                                         |
-| [Thiago Tenório](https://github.com/Tenorio05/)       | Líder da equipe e responsável pelo repertório e pelos slides de apresentação do projeto.                                        |
+| Time                                                  | Tarefas                                                                                                |
+| ----------------------------------------------------- | --------------------------------------------------------------------------------------                 |
+| [Arthur Henrique](https://github.com/Alpalone/)       | Responsável pelo código base, desenvolvendo o movimento do player, dos inimigos e do mapa.             |
+| [Lucas José](https://github.com/lucascavalcanti/)     | Desenvolveu a parte gráfica do jogo, criando os sprites do jogador, dos coletáveis e dos inimigos.     |
+| [Pedro Cavalcanti](https://github.com/Cavuca5529/)    | Responsável pelo desenvolvimento das mecânicas dos coletáveis, das colisões e dos sprites.             |
+| [Theo William](https://github.com//)                  | Desenvolveu o background e foi responsável pela organização do código com o uso de POO.                |
+| [Thiago Tenório](https://github.com/Tenorio05/)       | Líder da equipe e responsável pelo repertório e pelos slides de apresentação do projeto.               |
 
-## Conceitos Utilizados (que foram apresentados durante a disciplina e utilizados no projeto)
+## Conceitos Utilizados
 
-Utilizamos principalmente a ideia da Programação Orientada a Objetos para manter o código organizado e acessível, mas também conceitos...
+Utilizamos os conceitos fundamentais, como estruturas de armazenamento e estruturas de repetição, assim como os princípios da Programação Orientada a Objetos (POO), os quais permitiram manter o código organizado e acessível.
+
+Ademais, outro método essencial para o desenvolvimento do jogo foi o uso de funções, as quais contribuíram significativamente na criação de classes, estruturas que
+
 
 ## Desafios, Erros e Lições
 
