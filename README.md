@@ -4,6 +4,10 @@ Relatório de desenvolvimento do jogo Vaqueiro Survivors feito para a disciplina
 
 ## Integrantes do Grupo
 
+| <img src="https://avatars.githubusercontent.com/u/175941727?s=400&u=797914bc8ce1e51ea972c3a31987de785b71a951&v=4" alt="Thiago Tenório" width="100" height="100"> |  |
+|  -                                                                                                                                                               |  |
+| [Thiago Tenório](mailto:tta2@cin.ufpe.br)                                                                                                                        |  |
+
 - Arthur Henrique dos Santos Silva
 - Lucas José Duarte Cavalcanti
 - Pedro Henrique de Andrade Cavalcanti
@@ -47,10 +51,9 @@ pygame-ce
 
 ## Conceitos Utilizados
 
-Utilizamos os conceitos fundamentais, como estruturas de armazenamento e estruturas de repetição, assim como os princípios da Programação Orientada a Objetos (POO), os quais permitiram manter o código organizado e acessível.
+Utilizamos os conceitos fundamentais, como estruturas de armazenamento (list, dict, etc.) e estruturas condicionais (if, else, while, for), assim como os princípios da Programação Orientada a Objetos (POO), os quais permitiram manter o código organizado e acessível.
 
-Ademais, outro método essencial para o desenvolvimento do jogo foi o uso de funções, as quais contribuíram significativamente na criação de classes, estruturas que
-
+Ademais, outro método essencial para o desenvolvimento do jogo foi o uso de funções, as quais contribuíram significativamente na criação de classes, estruturas que auxiliaram na organização do código e em uma melhor visibilidade.
 
 ## Desafios, Erros e Lições
 
