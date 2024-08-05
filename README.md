@@ -38,6 +38,12 @@ pygame==2.6.0
 ```bash
 pygame-ce
 ```
+```bash
+random
+```
+```bash
+math
+```
 
 ## Divisão do Trabalho no Grupo
 
