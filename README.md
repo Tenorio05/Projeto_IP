@@ -22,12 +22,12 @@ Vaqueiro Survivors é um jogo no qual o Zé Vaqueiro enfrenta um apocalipse de v
 
 ```text
 animation/
-├── left
+├── left/
    ├── 0.png
    ├── 1.png
    ├── 2.png
    ├── 3.png
-├── right
+├── right/
    ├── 0.png
    ├── 1.png
    ├── 2.png
