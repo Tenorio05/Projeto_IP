@@ -107,9 +107,7 @@ sprites.py
 
 ## Capturas de Tela
 
-<img src="./screenshots/tela inicial.png" width="2000px">
-<img src="./screenshots/tela gameplay.png" width="2000px">
-<img src="./screenshots/tela final.png" width="2000px">
+<img src="./screenshots/tela inicial.png" width=333 height=200> <img src="./screenshots/tela gameplay.png" width=333 height=200> <img src="./screenshots/tela final.png" width=333 height=200>
 
 ## Bibliotecas Utilizadas
 
