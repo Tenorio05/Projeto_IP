@@ -3,7 +3,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, collision_sprites, coin_sprites, update_score, xp_sprites, update_xp, enemy_sprites, display_surface, vida_sprites):
         super().__init__(groups)
         self.load_sprites()
-        self.vida = 5
+        self.vida = 4
         self.state = "right"
         self.animation_index = 0
         self.enemy_sprites = enemy_sprites
@@ -87,15 +87,14 @@ class Player(pygame.sprite.Sprite):
             if pygame.sprite.spritecollide(self, self.vida_sprite, True):
                 self.vida +=1 
 
-                if self.vida > 5:
-                    self.vida = 5
+                if self.vida > 4:
+                    self.vida = 4
                     for i in range(10):
                         self.update_score()
                     
         for sprite in self.enemy_sprites:
             if pygame.sprite.spritecollide(self, self.enemy_sprites, True):
                 self.vida -= 1
-
 
     def update(self, dt):
         self.input()

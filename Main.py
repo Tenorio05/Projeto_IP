@@ -18,7 +18,6 @@ class Game:
         self.dead = False
         self.pontos = 0
         
-
         #groups
         self.all_sprites = Allsprites()
         self.collision_sprites = pygame.sprite.Group()
@@ -30,13 +29,13 @@ class Game:
         self.xp_sprites = pygame.sprite.Group()
 
         #placar moedas
-        self.font_score = pygame.font.Font(join("Oxanium-Bold.ttf"), 60)
+        self.font_score = pygame.font.Font(join("fontes/PressStart2P.ttf"), 50)
         self.score = 0
-        self.text_surf_score = self.font_score.render(str(self.score), True, "yellow")
-        self.text_rect_score = self.text_surf_score.get_frect()
+        self.text_surf_score = self.font_score.render('X' + str(self.score), True, "yellow")
+        self.text_rect_score = self.text_surf_score.get_frect(bottomright= (1090, 65))
 
         #placar xp
-        self.font_lv = pygame.font.Font(join("Oxanium-Bold.ttf"), 20)
+        self.font_lv = pygame.font.Font(join("fontes/Oxanium-Bold.ttf"), 20)
         self.text_surf_lv = self.font_lv.render('Lv. ' + str(1), True, "white")
         self.text_rect_lv = self.text_surf_lv.get_frect(center = (635, 280))
 
@@ -47,11 +46,11 @@ class Game:
 
         #timer enemy
         self.enemy_event = pygame.event.custom_type()
-        pygame.time.set_timer(self.enemy_event, 700)
         self.spawn_positions = []
 
         # background
-        self.bg = pygame.image.load('backgrounds/grass.jpg').convert()
+        self.bg = pygame.image.load('backgrounds/map.png').convert()
+        self.bg = pygame.transform.scale(self.bg, (2000, 2000))
         self.bg_width = self.bg.get_width()
         self.bg_height = self.bg.get_height()
         
@@ -59,6 +58,7 @@ class Game:
         self.tiles_y = math.ceil(WINDOW_HEIGHT / self.bg_height) + 1
         
         self.player = Player((400,300), self.all_sprites, self.collision_sprites, self.coin_sprites, self.update_score, self.xp_sprites, self.update_xp, self.enemy_sprites, self.display_surface, self.vida_sprites)
+        pygame.time.set_timer(self.enemy_event, int(700 / self.player.level))
         self.gun = Gun(self.player, self.all_sprites)
         self.vida = Coraçao(self.coraçao)
         
@@ -80,15 +80,13 @@ class Game:
 
     def update_score(self):
         self.score += 1
-        self.text_surf_score = self.font_score.render(str(self.score), True, "yellow")
+        self.text_surf_score = self.font_score.render('X' + str(self.score), True, "yellow")
 
     def update_xp(self):
         self.player.xp += 1
         if self.player.xp == self.player.level * 25:
             self.player.level += 1
             self.player.xp = 0
-
-
 
         self.text_surf_lv = self.font_lv.render('Lv. ' + str(self.player.level), True, "white")
 
@@ -116,22 +114,14 @@ class Game:
                     if event.type == pygame.QUIT:
                         self.running = False
                 
-                titulo_font = pygame.font.Font(join("Oxanium-Bold.ttf"), 80)
-                enter_font = pygame.font.Font(join("Oxanium-Bold.ttf"), 50)
-                text = titulo_font.render('VAQUEIRO SURVIVORS', True, 'yellow')
-                text_surface = text.get_rect()
-                self.display_surface.fill('black')
-                self.display_surface.blit(text, (220, WINDOW_HEIGHT/3), text_surface)
-                text = enter_font.render('press ENTER to start!', True, 'yellow')
-                self.display_surface.blit(text, (400, WINDOW_HEIGHT/1.5), text_surface)
+                self.title_screen = pygame.image.load('backgrounds/1.png')
+                self.title_screen = pygame.transform.scale(self.title_screen, (WINDOW_WIDTH, WINDOW_HEIGHT))
+                self.display_surface.blit(self.title_screen, (0, 0))
 
                 keys = pygame.key.get_pressed()
 
                 if keys[pygame.K_RETURN]:
                     self.title = False
-                    
-
-                
             
             else:
                 if self.dead:
@@ -149,16 +139,17 @@ class Game:
                         if event.type == pygame.QUIT:
                             self.running = False
                     
-                    dead_font = pygame.font.Font(join("Oxanium-Bold.ttf"), 140)
-                    score_font = pygame.font.Font(join("Oxanium-Bold.ttf"), 100)
-                    dead_text = dead_font.render('YOU DIED', True, 'red')
+                    
+                    score_font = pygame.font.Font(join("fontes/PressStart2P.ttf"), 50)
+                    
                     score_text = score_font.render('Your Score: ' + str( self.pontos + ((self.player.level - 1) * 100)), True, 'yellow')
                     
-                    dead_text_surface = dead_text.get_rect()
+                    
                     score_text_surface = score_text.get_frect()
-                    self.display_surface.fill('black')
-                    self.display_surface.blit(dead_text, (WINDOW_WIDTH/4, WINDOW_HEIGHT/4), dead_text_surface)
-                    self.display_surface.blit(score_text, (WINDOW_WIDTH/4, WINDOW_HEIGHT/2), score_text_surface)
+                    dead_screen = pygame.image.load('backgrounds/2.png')
+                    dead_screen = pygame.transform.scale(dead_screen, (WINDOW_WIDTH, WINDOW_HEIGHT))
+                    self.display_surface.blit(dead_screen, (0,0))
+                    self.display_surface.blit(score_text, (WINDOW_WIDTH/12, WINDOW_HEIGHT/2), score_text_surface)
 
 
                     keys = pygame.key.get_pressed()
@@ -166,7 +157,7 @@ class Game:
                     if keys[pygame.K_SPACE]:
                         self.dead = False
                         self.score = -1
-                        self.player.vida = 5
+                        self.player.vida = 4
                         self.pontos = 0
                         self.player.level = 1
                         self.player.xp = -1
@@ -177,7 +168,7 @@ class Game:
                         self.title = True
                         self.dead = False
                         self.score = -1
-                        self.player.vida = 5
+                        self.player.vida = 4
                         self.pontos = 0
                         self.player.level = 1
                         self.player.xp = -1
@@ -192,24 +183,22 @@ class Game:
                         if event.type == self.enemy_event:
                             enemy_pos = self.enemy_spawner()
                             
-                            Enemies(enemy_pos, (self.all_sprites,self.enemy_sprites), self.player, self.collision_sprites)
+                            Enemies(enemy_pos, (self.all_sprites,self.enemy_sprites), self.player, self.collision_sprites, self.player.level)
                     
                     #gerar os coletáveis
                     for sprite in self.enemy_sprites:
                         if pygame.sprite.spritecollide(sprite, self.bullet_sprites, True):
-                            drop = random.randint(0, 9)
-                            if drop >= 7:
+                            drop = random.randint(1, 20)
+                            if 18 >= drop >= 13:
                                 self.coin = Coin((sprite.rect.centerx, sprite.rect.centery), (self.all_sprites, self.coin_sprites))
                             
-                            elif drop == 0:
+                            elif drop >= 19:
                                 self.item = Vida((sprite.rect.centerx, sprite.rect.centery), (self.all_sprites, self.vida_sprites))
                             
-                            else:
+                            elif 12 >= drop >= 4:
                                 self.xp = Xp((sprite.rect.centerx, sprite.rect.centery), (self.all_sprites, self.xp_sprites))
 
                             sprite.kill()
-
-        
 
                     #update
                     self.timer()
@@ -226,15 +215,17 @@ class Game:
 
                     self.all_sprites.draw(self.player.rect.center)
                     self.display_surface.blit(self.text_surf_score, self.text_rect_score)
+                    coin = pygame.image.load('coin/2.png')
+                    coin = pygame.transform.scale(coin, (70, 70))
+                    self.display_surface.blit(coin, (925, 0))
                     self.display_surface.blit(self.text_surf_lv, self.text_rect_lv)
                     barra = int((self.player.xp *(1/(self.player.level * 25))) * 70)
                     pygame.draw.rect(self.display_surface, 'blue',((600, 290), (barra, 7 )))
                     pygame.draw.rect(self.display_surface, 'white',((600, 290), (70, 7 )), 2)
 
-                    
-
                     for i in range(self.player.vida):
-                        self.display_surface.blit(self.vida.image, (100 + i * 50, 40))
+                        self.vida.update(dt)
+                        self.display_surface.blit(self.vida.image, (20 + i * 60, -1))
 
                     if self.player.vida <= 0:
                         self.dead = True

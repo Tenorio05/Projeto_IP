@@ -1,5 +1,7 @@
 from settings import *
 from math import atan2, degrees
+import random
+from personagem import Player
 
 class Colisao(pygame.sprite.Sprite):
     def __init__(self, pos, surf, groups):
@@ -52,7 +54,7 @@ class Bullet(pygame.sprite.Sprite):
         self.lifetime = 1000 
 
         self.direction = direction
-        self.speed = 1200
+        self.speed = 900
 
     def update(self, dt):
         self.rect.center += self.direction * self.speed * dt
@@ -61,18 +63,20 @@ class Bullet(pygame.sprite.Sprite):
             self.kill()    
 
 class Enemies(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, player, collision_sprites):
+    def __init__(self, pos, groups, player, collision_sprites, level):
         super().__init__(groups)
         self.player = player
 
         # image
-        self.image = pygame.image.load('sprites/terrorist.png').convert_alpha()
+        self.image = pygame.image.load(join("inimigo", "0.png")).convert_alpha()
+        self.size = random.randint(60, 150)
+        self.image = pygame.transform.scale(self.image, (self.size, self.size))
         self.rect = self.image.get_frect(center = pos)
         self.hitbox = self.rect.inflate(-20, -40)
         self.collision_sprites = collision_sprites
 
         self.direction = pygame.Vector2()
-        self.speed = 100
+        self.speed = 100 * level
 
     def update(self, dt):
     # Move towards player
@@ -85,26 +89,45 @@ class Enemies(pygame.sprite.Sprite):
 class Coin(pygame.sprite.Sprite):
     def __init__(self, pos, groups):
         super().__init__(groups)
-        img = pygame.image.load(join("coin.png"))
-        self.image = pygame.transform.scale(img, (20, 20))
+        img = pygame.image.load(join("coin", "2.png"))
+        self.image = pygame.transform.scale(img, (40, 40))
         self.rect = self.image.get_frect(center = pos)
 
 class Xp(pygame.sprite.Sprite):
     def __init__(self, pos, groups):
         super().__init__(groups)
-        img = pygame.image.load(join("xp.png"))
-        self.image = pygame.transform.scale(img, (20, 20))
+        img = pygame.image.load(join("xp", "2.png"))
+        self.image = pygame.transform.scale(img, (40, 40))
         self.rect = self.image.get_frect(center = pos)
 
 class Coraçao(pygame.sprite.Sprite):
     def __init__(self, groups) -> None:
         super().__init__(groups)
-        img = pygame.image.load(join('coraçao.png'))
-        self.image = pygame.transform.scale(img, (50, 50))
+        img = pygame.image.load(join("coracao", "3.png"))
+        self.image = pygame.transform.scale(img, (80, 80))
+        self.animation_index = 0
+    
+    def load_sprites(self):
+        self.frames = []
+        for folder, subfolder, file in walk(join("coracao")):
+            if file:
+                for name in file:
+                    sprite_atual = join(folder, name)
+                    surf = pygame.image.load(sprite_atual).convert_alpha()
+                    self.frames.append(surf)
+
+    def animation(self, dt):
+        self.animation_index += 1 * dt
+        self.image = self.frames[int(self.animation_index) % len(self.frames)]
+        self.image = pygame.transform.scale(self.image, (60, 60))
+    
+    def update(self, dt):
+        self.load_sprites()
+        self.animation(dt)
 
 class Vida(pygame.sprite.Sprite):
     def __init__(self, pos, groups) -> None:
         super().__init__(groups)
-        img = pygame.image.load('coraçao.png')
-        self.image = pygame.transform.scale(img, (35, 35))
+        img = pygame.image.load(join("coracao", "2.png"))
+        self.image = pygame.transform.scale(img, (50, 50))
         self.rect = self.image.get_frect(center = pos)
