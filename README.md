@@ -12,7 +12,7 @@ Relatório de desenvolvimento do jogo Vaqueiro Survivors feito para a disciplina
 
 ## Descrição do Jogo
 
-Vaqueiro Survivors é um jogo no qual o Zé caminha pokas ideias pelos campos verdejantes jogando seu microfone em quem aparecer a sua volta.
+Vaqueiro Survivors é um jogo no qual o Zé Vaqueiro enfrenta um apocalipse de vacas zumbi no Nordeste, e para sair vivo dessa vaqueijada, ele usa sua pistola lendária com balas de microfone e tenta desviar da maior quantidade possível de vacas zumbi. Nessa jornada ele coleta recompensas e aumenta de nível conforme acerta suas microfonadas.
 
 ## Arquitetura do Projeto
 
