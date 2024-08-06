@@ -97,13 +97,13 @@ xp/
 
 ### Arquivos
 
-'''text
+```text
 Main.py
 groups.py
 personagem.py
 settings.py
 sprites.py
-'''
+```
 
 ## Capturas de Tela
 
