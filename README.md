@@ -18,10 +18,55 @@ Vaqueiro Survivors é um jogo no qual o Zé Vaqueiro enfrenta um apocalipse de v
 
  Como os códigos foram organizados
 
-### pasta 1...
-### pasta 2...
-### pasta 3...
+### Diretórios
 
+'''text
+__pycache__/
+├── groups.cpython-312.pyc
+├── personagem.cpython-312.pyc
+├── settings.cpython-312.pyc
+├── sprites.cpython-312.pyc
+'''
+'''text
+animation/
+├── left
+   ├── 0.png
+   ├── 1.png
+   ├── 2.png
+   ├── 3.png
+├── right
+   ├── 0.png
+   ├── 1.png
+   ├── 2.png
+   ├── 3.png
+'''
+'''text
+backgrounds/
+├──
+
+'''
+'''text
+personagens/
+├── bigze.png
+├── ze.png
+'''
+'''text
+sprites/
+├── arma.png
+├── gun.png
+├── mic.png
+├── terrorist.png
+'''
+
+### Arquivos
+
+'''text
+Main.py
+groups.py
+personagem.py
+settings.py
+sprites.py
+'''
 
 ## Capturas de Tela
 
