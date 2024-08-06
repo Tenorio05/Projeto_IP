@@ -21,13 +21,6 @@ Vaqueiro Survivors é um jogo no qual o Zé Vaqueiro enfrenta um apocalipse de v
 ### Diretórios
 
 ```text
-__pycache__/
-├── groups.cpython-312.pyc
-├── personagem.cpython-312.pyc
-├── settings.cpython-312.pyc
-├── sprites.cpython-312.pyc
-```
-```text
 animation/
 ├── left
    ├── 0.png
@@ -40,22 +33,66 @@ animation/
    ├── 2.png
    ├── 3.png
 ```
+
 ```text
 backgrounds/
-├──
+├── 1.png
+├── 2.png
+├── map.png
+├── mapa.png
+```
 
-```
 ```text
-personagens/
-├── bigze.png
-├── ze.png
+coin/
+├── 0.png
+├── 1.png
+├── 2.png
+├── 3.png
 ```
+
+```text
+coracao/
+├── 0.png
+├── 1.png
+├── 2.png
+├── 3.png
+```
+
+```text
+fontes/
+├── Oxanium-Bold.ttf
+├── PressStart2P.ttf
+```
+
+```text
+inimigo/
+├── 0.png
+├── 1.png
+├── 2.png
+├── 3.png
+```
+
+```text
+screenshots/
+├── tela final.png
+├── tela gameplay.png
+├── tela inicial.png
+```
+
 ```text
 sprites/
 ├── arma.png
 ├── gun.png
 ├── mic.png
 ├── terrorist.png
+```
+
+```text
+xp/
+├── 0.png
+├── 1.png
+├── 2.png
+├── 3.png
 ```
 
 ### Arquivos
@@ -70,6 +107,9 @@ sprites.py
 
 ## Capturas de Tela
 
+<img src="./screenshots/tela inicial.png" width="2000px">
+<img src="./screenshots/tela gameplay.png" width="2000px">
+<img src="./screenshots/tela final.png" width="2000px">
 
 ## Bibliotecas Utilizadas
 
