@@ -6,22 +6,22 @@ class Colisao(pygame.sprite.Sprite):
         super().__init__(groups)
         self.image = pygame.Surface(surf)
         self.image.fill('blue')
-        self.rect = self.image.get_rect(center = pos)
+        self.rect = self.image.get_frect(center = pos)        
 
 class Gun(pygame.sprite.Sprite):
-
 
     def __init__(self, player, groups):
         #player part
         self.player = player
-        self.distance = 180
+        self.distance = 90
         self.player_direction = pygame.Vector2(0, 1)
 
         #sprite part
         super().__init__(groups)
         self.gun_surface = pygame.image.load('sprites/arma.png')
+        self.gun_surface = pygame.transform.scale(self.gun_surface, (70, 50))
         self.image = self.gun_surface
-        self.rect = self.image.get_rect(center = self.player.rect.center + self.player_direction * self.distance)
+        self.rect = self.image.get_frect(center = self.player.rect.center + self.player_direction * self.distance)
 
     def direction(self):
         mouse_pos = pygame.Vector2(pygame.mouse.get_pos())
@@ -47,13 +47,12 @@ class Bullet(pygame.sprite.Sprite):
     def __init__(self, surf, pos, direction, groups):
         super().__init__(groups)
         self.image = surf
-        self.rect = self.image.get_rect(center = pos)
+        self.rect = self.image.get_frect(center = pos)
         self.spawn_time = pygame.time.get_ticks()
         self.lifetime = 1000 
 
         self.direction = direction
         self.speed = 1200
-
 
     def update(self, dt):
         self.rect.center += self.direction * self.speed * dt
@@ -68,9 +67,10 @@ class Enemies(pygame.sprite.Sprite):
 
         # image
         self.image = pygame.image.load('sprites/terrorist.png').convert_alpha()
-        self.rect = self.image.get_rect(center = pos)
+        self.rect = self.image.get_frect(center = pos)
         self.hitbox = self.rect.inflate(-20, -40)
         self.collision_sprites = collision_sprites
+
         self.direction = pygame.Vector2()
         self.speed = 100
 
@@ -82,4 +82,29 @@ class Enemies(pygame.sprite.Sprite):
 
         self.rect.center += self.direction * self.speed * dt
     
-    
+class Coin(pygame.sprite.Sprite):
+    def __init__(self, pos, groups):
+        super().__init__(groups)
+        img = pygame.image.load(join("coin.png"))
+        self.image = pygame.transform.scale(img, (20, 20))
+        self.rect = self.image.get_frect(center = pos)
+
+class Xp(pygame.sprite.Sprite):
+    def __init__(self, pos, groups):
+        super().__init__(groups)
+        img = pygame.image.load(join("xp.png"))
+        self.image = pygame.transform.scale(img, (20, 20))
+        self.rect = self.image.get_frect(center = pos)
+
+class Coraçao(pygame.sprite.Sprite):
+    def __init__(self, groups) -> None:
+        super().__init__(groups)
+        img = pygame.image.load(join('coraçao.png'))
+        self.image = pygame.transform.scale(img, (50, 50))
+
+class Vida(pygame.sprite.Sprite):
+    def __init__(self, pos, groups) -> None:
+        super().__init__(groups)
+        img = pygame.image.load('coraçao.png')
+        self.image = pygame.transform.scale(img, (35, 35))
+        self.rect = self.image.get_frect(center = pos)

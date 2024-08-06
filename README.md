@@ -4,10 +4,6 @@ Relatório de desenvolvimento do jogo Vaqueiro Survivors feito para a disciplina
 
 ## Integrantes do Grupo
 
-| <img src="https://avatars.githubusercontent.com/u/175941727?s=400&u=797914bc8ce1e51ea972c3a31987de785b71a951&v=4" alt="Thiago Tenório" width="100" height="100"> |  |
-|  -                                                                                                                                                               |  |
-| [Thiago Tenório](mailto:tta2@cin.ufpe.br)                                                                                                                        |  |
-
 - Arthur Henrique dos Santos Silva
 - Lucas José Duarte Cavalcanti
 - Pedro Henrique de Andrade Cavalcanti
